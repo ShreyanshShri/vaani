@@ -10,7 +10,8 @@ import { errorHandler } from "./middlewares/error.middleware.js";
 // Both DB drivers
 import { connectDB } from "./config/db.js"; // Mongoose
 import { connectMongo } from "./db/mongodb.js"; // Native MongoClient
-import { initQdrant } from "./memory/qdrant.js";
+// import { initQdrant } from "./memory/qdrant.js";
+import { initializeMemoryCollection } from "./memory/init.js";
 
 const app = express();
 
@@ -32,7 +33,8 @@ app.ready = async () => {
 	await Promise.all([
 		connectDB(), // Connect Mongoose
 		connectMongo(), // Connect MongoClient
-		initQdrant(), // Connect Vector DB
+		// initQdrant(), // Connect Vector DB
+		await initializeMemoryCollection(),
 	]);
 };
 

@@ -21,12 +21,13 @@ export async function createPrimaryAgent(userId, callbacks = {}) {
 			tools: primaryAgentTools,
 
 			outputAudioTranscription: {},
+			inputAudioTranscription: {},
 
 			systemInstruction: {
 				parts: [
 					{
 						text: `
-You are the primary conversational agent for a digital nurse.
+You are the primary female conversational agent for a digital nurse.
 
 The user may speak English, Hindi, or a mixture of both.
 
@@ -57,6 +58,16 @@ unless the appropriate tool was actually executed.
 					console.log("AI Text Output:", text);
 
 					callbacks.onText?.(text);
+				}
+
+				if (serverContent?.inputTranscription?.text) {
+					const text = serverContent.inputTranscription.text;
+					// console.log("USER:", text);
+
+					callbacks.onUserText?.({
+						userText: text,
+						timestamp: new Date().toISOString(),
+					});
 				}
 
 				if (message.toolCall) {

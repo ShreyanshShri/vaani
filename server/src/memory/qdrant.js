@@ -1,31 +1,11 @@
-import "../env.js";
 import { QdrantClient } from "@qdrant/js-client-rest";
 
-const client = new QdrantClient({
-	url: process.env.QDRANT_URL,
+export const client = new QdrantClient({
+	host: "localhost",
+	port: 6333,
 });
 
-const collectionName = process.env.QDRANT_COLLECTION;
+export const collectionName = "medical_memory";
 
-export async function initQdrant() {
-	const collections = await client.getCollections();
-
-	const exists = collections.collections.some(
-		(collection) => collection.name === collectionName,
-	);
-
-	if (!exists) {
-		await client.createCollection(collectionName, {
-			vectors: {
-				size: 1536,
-				distance: "Cosine",
-			},
-		});
-
-		console.log(`Created Qdrant collection: ${collectionName}`);
-	} else {
-		console.log(`Qdrant collection exists: ${collectionName}`);
-	}
-}
-
-export { client, collectionName };
+export const EMBEDDING_MODEL = "gemini-embedding-001";
+export const EMBEDDING_DIMENSIONS = 768;

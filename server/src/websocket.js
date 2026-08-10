@@ -3,6 +3,8 @@ import { WebSocketServer } from "ws";
 import { createPrimaryAgent } from "./agent/primary.js";
 import { executeTool } from "./agent/toolExecutor.js";
 import { createRimeSession } from "./tts/rime.js";
+import { processMemory } from "./agent/memory.js";
+import { randomUUID } from "crypto";
 
 export function setupWebSocketServer(server) {
 	// Attach WebSocket to the existing HTTP server instance
@@ -11,6 +13,7 @@ export function setupWebSocketServer(server) {
 	wss.on("connection", async (ws, req) => {
 		// Tip: You can extract auth tokens or user details from `req.url` or cookies here
 		const userId = "test-user-001";
+		const sessionId = randomUUID();
 		let agent;
 		let rime;
 
@@ -25,9 +28,18 @@ export function setupWebSocketServer(server) {
 				onText: (text) => {
 					rime.sendText(text);
 				},
-				onAudioStart: () => {
-					console.log("AI audio started");
+
+				onUserText: (observation) => {
+					processMemory({
+						userId,
+						sessionId,
+						...observation,
+					}).catch((error) => {
+						console.error("Memory processing failed:", error);
+					});
 				},
+
+				onAudioStart: () => {},
 			});
 		} catch (error) {
 			console.error("Failed to create Gemini session:", error);

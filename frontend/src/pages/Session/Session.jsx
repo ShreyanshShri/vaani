@@ -286,9 +286,9 @@ function Session() {
 			<main className="session-main">
 				<header className="session-header">
 					<div>
-						<h1>Digital Nurse</h1>
+						<h1>Vaani</h1>
 
-						<p>Your conversation is voice-first.</p>
+						{/* <p>Your conversation is voice-first.</p> */}
 					</div>
 
 					<button className="end-session-button" onClick={endSession}>
@@ -333,11 +333,11 @@ function Session() {
 						)}
 					</div>
 
-					<div className="session-stats">
+					{/* <div className="session-stats">
 						<span>Audio: PCM 16-bit</span>
 
 						<span>{chunksSent} chunks sent</span>
-					</div>
+					</div> */}
 				</section>
 
 				<footer className="session-footer">
