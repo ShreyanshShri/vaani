@@ -1,0 +1,153 @@
+.landing {
+  min-height: 100vh;
+  background: white;
+}
+
+.landing-nav {
+  height: 80px;
+  padding: 0 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--brand-green);
+}
+
+.brand h2 {
+  margin: 0;
+  color: var(--brand-dark-text);
+  font-size: 20px;
+}
+
+.brand span {
+  font-size: 12px;
+  color: var(--brand-muted);
+}
+
+.landing-nav button,
+.hero button {
+  border: none;
+  background: var(--brand-green);
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.landing-nav button {
+  padding: 11px 24px;
+  border-radius: 8px;
+}
+
+.hero {
+  background: var(--brand-light-green);
+  overflow: hidden;
+}
+
+.hero-content {
+  min-height: 520px;
+  padding: 70px 6%;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.hero-text {
+  flex: 1;
+}
+
+.hero-text h1 {
+  font-size: clamp(42px, 5vw, 64px);
+  line-height: 1.05;
+  margin: 0 0 24px;
+}
+
+.hero-text h1 span {
+  color: var(--brand-green);
+}
+
+.hero-text p {
+  max-width: 540px;
+  color: var(--brand-muted);
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.hero-text button {
+  margin-top: 15px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-image {
+  flex: 1;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 18px;
+  display: block;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+.features {
+  padding: 60px 6%;
+  background: #f8fae8;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+  text-align: center;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.feature-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-green);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.feature h3 {
+  color: var(--brand-green);
+  margin: 15px 0 8px;
+}
+
+.feature p {
+  max-width: 300px;
+  color: var(--brand-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;
+    padding: 50px 6%;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .landing-nav {
+    padding: 0 5%;
+  }
+}
