@@ -17,5 +17,10 @@ export async function initializeMemoryCollection() {
 		},
 	});
 
+	await client.createPayloadIndex(collectionName, {
+		field_name: "userId",
+		field_schema: "keyword",
+	});
+
 	console.log(`Created Qdrant collection "${collectionName}"`);
 }
