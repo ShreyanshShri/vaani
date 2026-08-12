@@ -12,6 +12,7 @@ import { connectDB } from "./config/db.js"; // Mongoose
 import { connectMongo } from "./db/mongodb.js"; // Native MongoClient
 // import { initQdrant } from "./memory/qdrant.js";
 import { initializeMemoryCollection } from "./memory/init.js";
+import { connectRedis } from "./config/redis.js";
 
 const app = express();
 
@@ -34,7 +35,8 @@ app.ready = async () => {
 		connectDB(), // Connect Mongoose
 		connectMongo(), // Connect MongoClient
 		// initQdrant(), // Connect Vector DB
-		await initializeMemoryCollection(),
+		initializeMemoryCollection(),
+		connectRedis(), // Connect Redis
 	]);
 };
 
