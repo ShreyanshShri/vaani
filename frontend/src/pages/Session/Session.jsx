@@ -333,9 +333,9 @@ function Session() {
 	}
 
 	const statusText = {
-		connecting: "Connecting to your nurse...",
+		connecting: "Connecting to Vaani...",
 		listening: "Listening...",
-		speaking: "Your nurse is speaking...",
+		speaking: "Vaani is speaking...",
 		paused: "Microphone paused",
 		ended: "Session ended",
 		error: "Something went wrong",
@@ -381,7 +381,7 @@ function Session() {
 						{status === "speaking" ? (
 							<>
 								<Volume2 size={17} />
-								<span>Nurse speaking</span>
+								<span>Vaani speaking</span>
 							</>
 						) : (
 							<>
