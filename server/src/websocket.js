@@ -1,7 +1,7 @@
 // websocket.js
 import { WebSocketServer } from "ws";
 import { createPrimaryAgent } from "./agent/primary.js";
-import { executeTool } from "./agent/toolExecutor.js";
+import { executeTool } from "./agent/primaryToolExecutor.js";
 import { createRimeSession } from "./tts/rime.js";
 import { processMemory } from "./agent/memory.js";
 import { randomUUID } from "crypto";

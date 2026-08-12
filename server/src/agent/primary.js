@@ -1,7 +1,7 @@
 import { GoogleGenAI, Modality } from "@google/genai";
 import util from "util";
-import { primaryAgentTools } from "./tools.js";
-import { executeTool } from "./toolExecutor.js";
+import { primaryAgentTools } from "./primaryTools.js";
+import { executeTool } from "./primaryToolExecutor.js";
 
 const ai = new GoogleGenAI({
 	apiKey: process.env.GEMINI_API_KEY,
