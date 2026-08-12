@@ -1,5 +1,4 @@
 import { GoogleGenAI, Modality } from "@google/genai";
-import util from "util";
 import { primaryAgentTools } from "./primaryTools.js";
 import { executeTool } from "./primaryToolExecutor.js";
 
@@ -27,7 +26,7 @@ export async function createPrimaryAgent(userId, callbacks = {}) {
 				parts: [
 					{
 						text: `
-You are the primary female conversational agent for a digital nurse.
+You are the primary female conversational agent for a digital nurse named Vaani.
 
 The user may speak English, Hindi, or a mixture of both.
 
@@ -52,23 +51,48 @@ unless the appropriate tool was actually executed.
 			onmessage: async (message) => {
 				const serverContent = message.serverContent;
 
+				// --------------------------------------------------
+				// INTERRUPTION
+				// --------------------------------------------------
+
+				if (serverContent?.interrupted) {
+					console.log(">>> GEMINI INTERRUPTED");
+
+					callbacks.onInterrupt?.();
+				}
+
+				// --------------------------------------------------
+				// MODEL OUTPUT TRANSCRIPTION
+				// --------------------------------------------------
+
 				if (serverContent?.outputTranscription?.text) {
 					const text = serverContent.outputTranscription.text;
 
 					console.log("AI Text Output:", text);
 
+					// This is the signal that a new model
+					// response is actually producing output.
+					callbacks.onOutputStart?.();
+
 					callbacks.onText?.(text);
 				}
 
+				// --------------------------------------------------
+				// USER TRANSCRIPTION
+				// --------------------------------------------------
+
 				if (serverContent?.inputTranscription?.text) {
 					const text = serverContent.inputTranscription.text;
-					// console.log("USER:", text);
 
 					callbacks.onUserText?.({
 						userText: text,
 						timestamp: new Date().toISOString(),
 					});
 				}
+
+				// --------------------------------------------------
+				// TOOL CALL
+				// --------------------------------------------------
 
 				if (message.toolCall) {
 					console.log("TOOL CALL:", JSON.stringify(message.toolCall, null, 2));
@@ -80,6 +104,7 @@ unless the appropriate tool was actually executed.
 						const args = functionCall.args || {};
 
 						console.log("Executing:", name);
+
 						console.log("Args:", args);
 
 						try {

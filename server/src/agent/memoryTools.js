@@ -215,30 +215,30 @@ export const memoryAgentTools = [
 			   SEARCH MEMORY
 			========================= */
 
-			{
-				name: "search_medical_memory",
-				description:
-					"Search the user's semantic medical memory for relevant information.",
-				parameters: {
-					type: "object",
-					properties: {
-						query: {
-							type: "string",
-							description: "What medical information to search for.",
-						},
-						category: {
-							type: "string",
-							description:
-								"Optional category filter: medication, symptom, food, measurement, appointment, condition, or lifestyle.",
-						},
-						limit: {
-							type: "integer",
-							description: "Maximum number of results.",
-						},
-					},
-					required: ["query"],
-				},
-			},
+			// {
+			// 	name: "search_medical_memory",
+			// 	description:
+			// 		"Search the user's semantic medical memory for relevant information.",
+			// 	parameters: {
+			// 		type: "object",
+			// 		properties: {
+			// 			query: {
+			// 				type: "string",
+			// 				description: "What medical information to search for.",
+			// 			},
+			// 			category: {
+			// 				type: "string",
+			// 				description:
+			// 					"Optional category filter: medication, symptom, food, measurement, appointment, condition, or lifestyle.",
+			// 			},
+			// 			limit: {
+			// 				type: "integer",
+			// 				description: "Maximum number of results.",
+			// 			},
+			// 		},
+			// 		required: ["query"],
+			// 	},
+			// },
 
 			{
 				name: "search_medication_memory",
