@@ -19,6 +19,15 @@ export async function createPrimaryAgent(userId, callbacks = {}) {
 
 			tools: primaryAgentTools,
 
+			voiceActivityDetection: {
+				mode: "VOICE_ACTIVITY_DETECTION_AUTOMATIC",
+				// LOW sensitivity = higher threshold (ignores background noise)
+				startSensitivity: "VOICE_ACTIVITY_DETECTION_SENSITIVITY_LOW",
+				// Optional: make end sensitivity low or balanced to avoid quick cutoffs
+				endSensitivity: "VOICE_ACTIVITY_DETECTION_SENSITIVITY_LOW",
+				prefixPaddingMs: 300,
+			},
+
 			outputAudioTranscription: {},
 			inputAudioTranscription: {},
 
