@@ -5,6 +5,7 @@ import cors from "cors";
 
 import authRouter from "./routes/auth.routes.js";
 import userRouter from "./routes/user.routes.js";
+import prescriptionRouter from "./routes/prescription.routes.js";
 import { errorHandler } from "./middlewares/error.middleware.js";
 
 // Both DB drivers
@@ -28,6 +29,7 @@ app.use(
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/prescriptions", prescriptionRouter);
 
 // Initialize all database connections in parallel or sequence
 app.ready = async () => {
