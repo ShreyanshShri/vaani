@@ -1,10 +1,17 @@
-function Health() {
-  return (
-    <div style={{ padding: '40px' }}>
-      <h1>My Health</h1>
-      <p>Your medical information will appear here.</p>
-    </div>
-  );
+import { registerPushNotifications } from "../../notifications/pushNotifications";
+
+function Settings() {
+	async function enableNotifications() {
+		try {
+			await registerPushNotifications();
+			alert("Notifications enabled");
+		} catch (error) {
+			console.error(error);
+			alert(error.message);
+		}
+	}
+
+	return <button onClick={enableNotifications}>Enable Notifications</button>;
 }
 
-export default Health;
+export default Settings;

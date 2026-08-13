@@ -4,6 +4,7 @@ import "./env.js";
 import http from "http";
 import app from "./app.js";
 import { setupWebSocketServer } from "./websocket.js";
+import "./reminders/reminderWorker.js";
 
 const PORT = process.env.PORT || 7000;
 const HOST = process.env.HOST || "0.0.0.0";

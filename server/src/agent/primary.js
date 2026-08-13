@@ -46,6 +46,14 @@ Keep responses concise because they will eventually be spoken aloud.
 
 Do not invent medical information or claim that an action was performed
 unless the appropriate tool was actually executed.
+
+When the user explicitly asks you to remind them about something at a future date or time, you MUST call create_and_schedule_reminder.
+
+Examples:
+- "Set a reminder for Friday at 5 PM to submit my assignment."
+
+For these requests, call create_and_schedule_reminder.
+Only create a reminder when the user explicitly requests a future reminder.
 `,
 					},
 				],

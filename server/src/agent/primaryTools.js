@@ -242,6 +242,42 @@ export const primaryAgentTools = [
 					},
 				},
 			},
+			// reminders
+			{
+				name: "create_and_schedule_reminder",
+
+				description:
+					"Create a reminder and schedule a push notification for the user. Only use this tool when the user explicitly asks to be reminded about something at a future time. Do not create reminders for ordinary statements or medical events that the user is merely reporting.",
+
+				parameters: {
+					type: "object",
+
+					properties: {
+						title: {
+							type: "string",
+							description: "Short reminder title.",
+						},
+
+						message: {
+							type: "string",
+							description: "Notification message shown to the user.",
+						},
+
+						scheduledFor: {
+							type: "string",
+							description:
+								"Exact future date and time in ISO 8601 format including timezone offset.",
+						},
+
+						timezone: {
+							type: "string",
+							description: "IANA timezone, for example Asia/Kolkata.",
+						},
+					},
+
+					required: ["title", "message", "scheduledFor", "timezone"],
+				},
+			},
 		],
 	},
 ];

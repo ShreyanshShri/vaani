@@ -5,6 +5,8 @@ import cors from "cors";
 
 import authRouter from "./routes/auth.routes.js";
 import userRouter from "./routes/user.routes.js";
+import pushRoutes from "./routes/push.js";
+import reminderRoutes from "./routes/reminder.js";
 import prescriptionRouter from "./routes/prescription.routes.js";
 import { errorHandler } from "./middlewares/error.middleware.js";
 
@@ -30,6 +32,8 @@ app.use(
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/prescriptions", prescriptionRouter);
+app.use("/api/push", pushRoutes);
+app.use("/api/reminders", reminderRoutes);
 
 // Initialize all database connections in parallel or sequence
 app.ready = async () => {

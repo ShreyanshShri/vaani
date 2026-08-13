@@ -23,6 +23,8 @@ import {
 	getLifestyleMemory,
 } from "../tools/memory.js";
 
+import { createAndScheduleReminder } from "../reminders/reminderService.js";
+
 export async function executeMemoryTool(name, args, userId) {
 	switch (name) {
 		/* =========================
@@ -168,6 +170,16 @@ export async function executeMemoryTool(name, args, userId) {
 				userId,
 				...args,
 			});
+
+		case "create_and_schedule_reminder": {
+			return await createAndScheduleReminder({
+				userId,
+				title: args.title,
+				message: args.message,
+				scheduledFor: args.scheduledFor,
+				timezone: args.timezone,
+			});
+		}
 
 		default:
 			throw new Error(`Unknown memory tool: ${name}`);
